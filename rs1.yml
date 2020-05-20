@@ -5,9 +5,10 @@ metadata:
 spec:
   replicas: 3
   selector:
+    matchLabels:
+       env: production
     matchExpressions:
       - { key: env,  operator: In, values: [ production ] }
-      - { key: region,  operator: In, values: [ IND ] }
   template:
     metadata:
      name: rtweb-pod
@@ -17,4 +18,4 @@ spec:
     spec:
       containers:
       - name: rtweb-con
-        image: httpd 
+        image: vimal13/apache-webserver-php
