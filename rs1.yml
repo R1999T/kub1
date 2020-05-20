@@ -1,0 +1,20 @@
+ apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rtweb-rs
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - { key: env,  operator: In, values: [ production ] }
+      - { key: region,  operator: In, values: [ IND ] }
+  template:
+    metadata:
+     name: rtweb-pod
+     labels: 
+       env: production
+       region: IND
+    spec:
+      containers:
+      - name: rtweb-con
+        image: httpd 
